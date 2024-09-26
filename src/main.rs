@@ -168,7 +168,7 @@ async fn async_task(
 
         let call_res = method.call().await;
 
-        let duration_ms = start.elapsed().as_millis() as u64;
+        let duration_ms = start.elapsed().as_millis() as u64 - call_start_moment;
         samples.push((call_start_moment, duration_ms));
 
         req_counter.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
@@ -261,6 +261,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .into_iter()
         .count();
     println!("Количество пруфов {}", number_of_proofs);
+    if number_of_proofs == 1 {
+        panic!("Количество пруфов не достаточно");
+    }
     let start: DateTime<Utc> = Utc::now();
 
     let mut tasks = Vec::new();
