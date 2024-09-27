@@ -220,9 +220,9 @@ async fn proces_save_stats(
     println!("Запуск {} UTC", utc_timestamp);
     println!("Завершено {} UTC", current_utc_timestamp);
 
-    println!("50 процентиль {}", hist.value_at_quantile(0.50));
-    println!("75 процентиль {}", hist.value_at_quantile(0.75));
-    println!("95 процентиль {}", hist.value_at_quantile(0.95));
+    println!("50 процентиль {} мс", hist.value_at_quantile(0.50));
+    println!("75 процентиль {} мс", hist.value_at_quantile(0.75));
+    println!("95 процентиль {} мс", hist.value_at_quantile(0.95));
 
     if save_stats {
         let utc_start_timestamp = start.format("%Y_%m_%d_%H_%M_%S").to_string();
